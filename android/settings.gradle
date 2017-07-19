@@ -1,0 +1,3 @@
+rootProject.name = 'aandr_wedding_app'
+
+include ':app'
