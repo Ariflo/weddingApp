@@ -6,14 +6,13 @@
     "start_web": "npm run start:dev",
     "start_mobile": "npm run start:dev:mobile",
     "start:dev": "node web.server.dev.js",
-    "start:dev:mobile": "node node_modules/react-native/local-cli/cli.js start",
+    "start:dev:mobile": "react-native run-ios",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "jest"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
-    "babel-preset-stage-0": "^6.24.1",
     "express": "^4.15.3",
     "lodash": "^4.17.4",
     "mobx": "^3.2.1",
@@ -46,6 +45,7 @@
     "babel-plugin-react-transform": "^2.0.2",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1",
     "css-loader": "^0.28.4",
     "dotenv-safe": "^4.0.4",
