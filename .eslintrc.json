@@ -1,0 +1,28 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "array-bracket-spacing": 0,
+    "arrow-body-style": [0, "always"],
+    "func-names": 0,
+    "react/jsx-quotes": 0,
+    "react/jsx-filename-extension": 0,
+    "jsx-quotes": 0,
+    "react/prop-types": 0,
+    "space-infix-ops": 0,
+    "prefer-template": 0,
+    "no-dupe-class-members": "error",
+    "no-useless-constructor": 0,
+    "prefer-template": 0,
+    "no-param-reassign": 0,
+    "no-unused-vars": ["error", { "args": "none" }],
+    "camelcase": 0,
+    "quotes": 0,
+    "spaced-comment": 0,
+    "comma-spacing": 0
+  }
+}
