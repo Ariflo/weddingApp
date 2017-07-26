@@ -32,13 +32,6 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-          eslint: {
-              emitWarning: true,
-          }
-      }
-    }),
   ],
 
   module: {
@@ -56,18 +49,7 @@ module.exports = {
          loader: 'babel-loader',
          query: {
             presets: ['react', 'es2015', 'stage-0'],
-            plugins: [['react-transform', {
-              transforms: [{
-                transform: 'react-transform-hmr',
-                imports: ['react'],
-                // this is important for Webpack HMR:
-                locals: ['module']
-              },
-              {
-                "transform": "react-transform-catch-errors",
-                "imports": ["react", "redbox-react"]
-              }],
-            }]],
+            plugins: ['lodash'],
           },
         },
       ]
