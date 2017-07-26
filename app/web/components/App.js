@@ -9,7 +9,7 @@ class App extends React.Component {
 
   componentWillMount() {
     if (!this.props.first_store.isFetching) {
-      this.props.fetchNasaApod();
+      this.props.fetchNasaApod('web');
     }
   }
   render() {
