@@ -35,20 +35,3 @@ export function fetchNasaApod() {
       });
   };
 }
-
-export function fetchNasaApodMobile() {
-  return function dofetch(dispatch) {
-    dispatch(requestAPOD());
-
-    const url = 'https://api.nasa.gov/planetary/apod?api_key=' + process.env.NASA_KEY;
-
-    fetch(url)
-      .then((response) => {
-        dispatch(recieveAPOD(response));
-      })
-      .catch((error) => {
-        /* eslint-disable no-console */
-        console.log(error);
-      });
-  };
-}
