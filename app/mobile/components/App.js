@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Text, Image, View } from 'react-native';
-import { fetchNasaApod } from '../../shared/actions';
+import { fetchNasaApodMobile } from '../../shared/actions';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class App extends React.Component {
 
   componentWillMount() {
     if (!this.props.first_store.isFetching) {
-      this.props.fetchNasaApod('mobile');
+      this.props.fetchNasaApodMobile();
     }
   }
 
@@ -38,5 +38,5 @@ const mapStateToProps = ({ first_store }) => {
 };
 
 export default connect(mapStateToProps, {
-  fetchNasaApod,
+  fetchNasaApodMobile,
 })(App);

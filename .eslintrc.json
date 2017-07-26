@@ -5,6 +5,10 @@
   },
   "extends": "airbnb",
   "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
+  },
   "rules": {
     "array-bracket-spacing": 0,
     "arrow-body-style": [0, "always"],
