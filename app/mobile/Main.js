@@ -1,21 +1,20 @@
 import React from 'react';
-import { Router, Reducer, ActionConst } from 'react-native-router-flux'
+import { Provider, connect } from 'react-redux';
+import { Router } from 'react-native-router-flux'
 import views from './views';
+import configureStore from '../shared/store/configureStore';
 
-const reducer = params => {
-  const defaultReducer = new Reducer(params);
-  return (state, action) => {
-    console.log('ACTION:', action);
-    return defaultReducer(state, action);
-  };
-};
+const ConnectedRouter = connect()(Router);
+const store = configureStore();
 
 export default class Main extends React.Component {
   render() {
     return (
-      <Router createReducer={reducer} tintColor='red'>
-        {views()}
-      </Router>
+      <Provider store={store}>
+        <ConnectedRouter>
+          {views()}
+        </ConnectedRouter>
+      </Provider>
     );
   }
 }

@@ -32,6 +32,7 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.IgnorePlugin(/react-native-config/),
     new webpack.LoaderOptionsPlugin({
       options: {
           eslint: {

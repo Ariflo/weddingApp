@@ -19,9 +19,10 @@ class App extends React.Component {
       <div>
         <h1>Hello Web World</h1>
         <p>
-          Check out <a href={img_url}>this</a> Nasa Space Image
+          Check out this Nasa Space Image
           brought to you by React-Redux!
         </p>
+        <img src={img_url} alt="space_img" />
       </div>
     );
   }
