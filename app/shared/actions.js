@@ -18,7 +18,7 @@ export function fetchNasaApod() {
     dispatch(requestAPOD());
 
     const url =
-      'https://api.nasa.gov/planetary/apod?api_key=oz4z48sd1PjyJC2CV522htT7lQAg7fMmCExVpgLL';
+      'https://api.nasa.gov/planetary/apod?api_key=fG6oo8z8OETsTYszluhu7NsK16p0HE7QvUNsje6I';
 
     fetch(url, {
       method: 'GET',
