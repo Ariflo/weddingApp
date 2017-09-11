@@ -17,9 +17,11 @@ class Login extends Component {
   render() {
     return (
       <Container>
-        <Body>
-          <Title>Login</Title>
-        </Body>
+        <Header>
+          <Body>
+            <Title>Header</Title>
+          </Body>
+        </Header>
         <Content>
           <Form>
             <Item floatingLabel>

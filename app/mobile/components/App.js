@@ -9,11 +9,7 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <View>
-        <Login />
-      </View>
-    );
+    return (<Login />);
   }
 }
 
