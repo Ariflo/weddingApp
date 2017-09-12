@@ -7,9 +7,6 @@ import {
   Item,
   Input,
   Label,
-  Text,
-  Body,
-  Title,
 } from 'native-base';
 import { connect } from 'react-redux';
 
@@ -17,11 +14,6 @@ class Login extends Component {
   render() {
     return (
       <Container>
-        <Header>
-          <Body>
-            <Title>Header</Title>
-          </Body>
-        </Header>
         <Content>
           <Form>
             <Item floatingLabel>
