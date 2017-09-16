@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Container,
-  Header,
-  Content,
-  Form,
-  Item,
-  Input,
-  Label,
-} from 'native-base';
+import { Container, Header, Content, Form, Item, Input, Label, Button, Text } from 'native-base';
 import { connect } from 'react-redux';
 
 class Login extends Component {
@@ -25,6 +17,9 @@ class Login extends Component {
               <Input />
             </Item>
           </Form>
+          <Button bordered >
+            <Text>Sign-in</Text>
+          </Button>
         </Content>
       </Container>
     );
