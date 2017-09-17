@@ -1,21 +1,21 @@
-var  knex = require('./knex');
+const knex = require('./knex');
 
-var Guests = function(){
+const Guests = function () {
   return knex('Guests');
-}
-var Significant_Others = function(){
+};
+const Significant_Others = function () {
   return knex('Significant_Others');
-}
-var Kids = function(){
+};
+const Kids = function () {
   return knex('Kids');
-}
-var Events = function(){
+};
+const Events = function () {
   return knex('Events');
-}
+};
 
 module.exports = {
-  Guests: Guests,
-  Significant_Others: Significant_Others,
-  Kids: Kids,
-  Events: Events
-}
+  Guests,
+  Significant_Others,
+  Kids,
+  Events,
+};
