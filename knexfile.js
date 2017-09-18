@@ -1,7 +1,6 @@
 // Update with your config settings.
 
 module.exports = {
-
   development: {
     client: 'postgresql',
     connection: {
@@ -41,5 +40,4 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   }
-
 };
