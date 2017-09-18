@@ -1,4 +1,4 @@
-const knex = require('./knex');
+import knex from './knex'
 
 const Guests = function () {
   return knex('Guests');
