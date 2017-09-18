@@ -1,14 +1,13 @@
-import { guests } from '../../models';
+import Guests from '../../models';
 
 function get_all_guests() {
-  return knex('Guests');
+  return Guests;
 }
 
 function get_guest(req) {
-  knex('Guests')
-    .where({
-      id: req.guest.id,
-    })
+  Guests.where({
+    id: req.guest.id,
+  })
     .first()
     .then((guest) => {
       return { guest, code: 200 };
@@ -20,8 +19,7 @@ function get_guest(req) {
 }
 
 function add_guest(guest) {
-  knex('Guests')
-    .insert(guest)
+  Guests.insert(guest)
     .then((res) => {
       return res;
     })
@@ -34,10 +32,9 @@ function add_guest(guest) {
 }
 
 function update_guest(guest) {
-  return knex('Guests')
-    .where({
-      id: guest.id,
-    })
+  return Guests.where({
+    id: guest.id,
+  })
     .first()
     .update(guest)
     .then((updated_guest) => {
@@ -46,10 +43,9 @@ function update_guest(guest) {
 }
 
 function remove_guest(guest) {
-  knex('Guests')
-    .where({
-      id: guest.id,
-    })
+  Guests.where({
+    id: guest.id,
+  })
     .first()
     .del();
 }
