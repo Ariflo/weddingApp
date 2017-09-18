@@ -4,39 +4,47 @@ import path from 'path';
 import jwt from 'jsonwebtoken';
 import bodyParser from 'body-parser'
 import pg from 'pg';
-import { router } from './controllers/router';
+import router from './controllers/router';
 
 // load dotenv
 require('dotenv').load();
 
-pg.defaults.ssl = true;
-pg.connect(process.env.DATABASE_URL, (err, client) => {
+const pool = new pg.Pool()
+
+// connection using created pool
+pool.connect(function(err, client, release) {
   if (err) throw err;
-  console.log('Connected to postgres! Getting schemas...');
+  console.log('Postgres Connected!');
+  client.query('SELECT NOW()', (err, result) => {
+  release()
+  if (err) {
+    return console.error('Error executing query', err.stack)
+  }
+  console.log(result.rows)
+})
+})
 
-  client
-    .query('SELECT table_schema,table_name FROM information_schema.tables;')
-    .on('row', (row) => {
-      console.log(JSON.stringify(row));
-    });
-});
+// pool shutdown
+pool.end()
 
+pg.defaults.ssl = true;
 
 //create server instance
 const server = express();
 
 // set bodyParser configurations
 server.use(bodyParser.json());
-server.use(bodyParser.urlencoded({ extended: false }));\
+server.use(bodyParser.urlencoded({ extended: false }));
 
 /***************************
 API ROUTES HERE
 *****************************/
+
 server.use('/guests', router.guests);
 
 
 //set a port to listen to
-const port = process.env.PORT || 8080;
+const port = process.env.SERVER_PORT || 8080;
 
 //tune in to that port
 server.listen(port, () => {

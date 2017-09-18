@@ -1,4 +1,4 @@
-import { guests } from '../models';
+import { guests } from '../../models';
 
 function get_all_guests() {
   return knex('Guests');
