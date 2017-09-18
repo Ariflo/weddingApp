@@ -1,10 +1,13 @@
-// require all necessary modules
-const express = require('express');
-const methodOverride = require('method-override');
-const path = require('path');
-const jwt = require('jsonwebtoken');
-const bodyParser = require('body-parser');
-const pg = require('pg');
+import express from 'express';
+import methodOverride from 'method-override';
+import path from 'path';
+import jwt from 'jsonwebtoken';
+import bodyParser from 'body-parser'
+import pg from 'pg';
+import { router } from './controllers/router';
+
+// load dotenv
+require('dotenv').load();
 
 pg.defaults.ssl = true;
 pg.connect(process.env.DATABASE_URL, (err, client) => {
@@ -18,10 +21,8 @@ pg.connect(process.env.DATABASE_URL, (err, client) => {
     });
 });
 
-// load dotenv
-require('dotenv').load();
 
-//create app instance
+//create server instance
 const server = express();
 
 // set bodyParser configurations
@@ -29,10 +30,10 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: false }));\
 
 /***************************
-
-APPLY API ROUTES HERE
-
+API ROUTES HERE
 *****************************/
+server.use('/guests', router.guests);
+
 
 //set a port to listen to
 const port = process.env.PORT || 8080;
