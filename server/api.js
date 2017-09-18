@@ -1,21 +1,22 @@
 import express from 'express';
 import methodOverride from 'method-override';
-import path from 'path';
 import jwt from 'jsonwebtoken';
 import bodyParser from 'body-parser'
-import pg from 'pg';
+import { Pool, Client } from 'pg';
 import router from './controllers/router';
+import config from './config'
 
 // load dotenv
 require('dotenv').load();
 
-const pool = new pg.Pool()
+const pool = new Pool(config.db);
+const client = new Client(config.db);
 
 // connection using created pool
 pool.connect(function(err, client, release) {
   if (err) throw err;
   console.log('Postgres Connected!');
-  client.query('SELECT NOW()', (err, result) => {
+  client.query('SELECT * from "Guests"', (err, result) => {
   release()
   if (err) {
     return console.error('Error executing query', err.stack)
@@ -27,8 +28,6 @@ pool.connect(function(err, client, release) {
 // pool shutdown
 pool.end()
 
-pg.defaults.ssl = true;
-
 //create server instance
 const server = express();
 
@@ -39,12 +38,11 @@ server.use(bodyParser.urlencoded({ extended: false }));
 /***************************
 API ROUTES HERE
 *****************************/
-
 server.use('/guests', router.guests);
 
 
 //set a port to listen to
-const port = process.env.SERVER_PORT || 8080;
+const port = config.port || 8080;
 
 //tune in to that port
 server.listen(port, () => {
