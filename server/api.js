@@ -1,6 +1,5 @@
 import express from 'express';
 import methodOverride from 'method-override';
-import jwt from 'jsonwebtoken';
 import bodyParser from 'body-parser'
 import { Pool, Client } from 'pg';
 import router from './controllers/router';
