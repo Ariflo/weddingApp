@@ -20,7 +20,7 @@ pool.connect(function(err, client, release) {
   if (err) {
     return console.error('Error executing query', err.stack)
   }
-  console.log(result.rows)
+  //console.log(result.rows)
 })
 })
 

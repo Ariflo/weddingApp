@@ -22,14 +22,14 @@ function get_guest(req) {
     });
 }
 
-function add_guest(guest) {
-  Guests.where({ first_name: guest.first_name })
+function add_guest(guest, res) {
+  Guests.where({ email: guest.email })
     .first()
-    .then((res_guest) => {
-      if (res_guest) {
-        return {
-          message: 'guest already invited or passwords do not match',
-        };
+    .then((resp_guest) => {
+      if (resp_guest) {
+        return res.json({
+          message: 'guest already invited',
+        });
       } else {
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(guest.password, salt, (err, hash) => {
@@ -51,14 +51,13 @@ function add_guest(guest) {
                   config.jwt_secret,
                 );
       
-                return { jwt: token, email: guest.email, id };
+                return res.json({ jwt: token, email: guest.email, id });
               });
           });
         });
       }
     })
     .catch((error) => {
-      console.log(error);
       return {
         error,
         message: 'Error connecting to Database',
