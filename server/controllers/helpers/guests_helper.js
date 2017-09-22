@@ -1,7 +1,8 @@
-import Guests from '../../models';
+import { Guests } from '../../models';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import config from '../../config'
+import knex from '../../knex'
 
 function get_all_guests() {
   return Guests;
@@ -22,45 +23,46 @@ function get_guest(req) {
 }
 
 function add_guest(guest) {
-  Guests.where({ id: req.body.id })
+  Guests.where({ first_name: guest.first_name })
     .first()
-    .then((guest) => {
-      if (guest || req.body.password !== req.body.passwordconfirm) {
-        res.json({
+    .then((res_guest) => {
+      if (res_guest) {
+        return {
           message: 'guest already invited or passwords do not match',
-        });
+        };
       } else {
         bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(req.body.password, salt, (err, hash) => {
+          bcrypt.hash(guest.password, salt, (err, hash) => {
             Guests.insert({
               pwd: hash,
-              first_name: req.body.first_name,
-              last_name: req.body.last_name,
-              email: req.body.email,
-              phone: req.body.phone,
-              address: req.body.address,
+              first_name: guest.first_name,
+              last_name: guest.last_name,
+              email: guest.email,
+              phone: guest.phone,
+              address: guest.address,
             })
               .returning('id')
               .then((id) => {
                 const token = jwt.sign(
                   {
                     id,
-                    email: req.body.email,
+                    email: guest.email,
                   },
                   config.jwt_secret,
                 );
       
-                res.json({ jwt: token, email: req.body.email, id });
+                return { jwt: token, email: guest.email, id };
               });
           });
         });
       }
     })
-    .catch((err) => {
-      res.json({
-        error: JSON.stringify(err),
+    .catch((error) => {
+      console.log(error);
+      return {
+        error,
         message: 'Error connecting to Database',
-      });
+      };
     });
 }
 
