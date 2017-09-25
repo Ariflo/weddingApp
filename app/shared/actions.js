@@ -32,7 +32,11 @@ export function add_guest(guest) {
       body: JSON.stringify(guest),
     })
       .then((response) => {
-        dispatch(guestAdded(response));
+        console.log(response);
+        return response.json();
+      })
+      .then((responseJson) => {
+        dispatch(recieveAPOD(responseJson));
       })
       .catch((error) => {
         /* eslint-disable no-console */

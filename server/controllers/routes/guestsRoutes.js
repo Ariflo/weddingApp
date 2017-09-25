@@ -8,9 +8,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const tmp = add_guest(req.body, res);
-  console.log("TMP =", tmp);
-  return res.send(add_guest(req.body));
+  console.log('************',add_guest(req, res));
+  return add_guest(req, res);
 });
 
 module.exports = router;
