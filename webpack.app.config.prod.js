@@ -22,7 +22,7 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         PORT: JSON.stringify(process.env.PORT),
-        NASA_KEY: JSON.stringify(process.env.NASA_KEY),
+        API_URL: JSON.stringify(process.env.API_URL),
       }
     }),
     new webpack.optimize.UglifyJsPlugin({

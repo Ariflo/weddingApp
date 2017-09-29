@@ -4,11 +4,12 @@ import { get_all_guests, add_guest } from '../helpers/guests_helper';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  return get_all_guests();
+  return res.send(get_all_guests());
 });
 
 router.post('/', (req, res) => {
-  return add_guest(req.body);
+  console.log('************',add_guest(req, res));
+  return add_guest(req, res);
 });
 
 module.exports = router;

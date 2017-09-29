@@ -1,2 +1,2 @@
-export const REQUEST_DATA = "REQUEST_DATA";
-export const RECIEVE_DATA = "RECIEVE_DATA";
+export const ADD_GUEST = "ADD_GUEST";
+export const GUEST_ADDED = "GUEST_ADDED";

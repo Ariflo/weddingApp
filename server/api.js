@@ -1,6 +1,5 @@
 import express from 'express';
 import methodOverride from 'method-override';
-import jwt from 'jsonwebtoken';
 import bodyParser from 'body-parser'
 import { Pool, Client } from 'pg';
 import router from './controllers/router';
@@ -21,7 +20,7 @@ pool.connect(function(err, client, release) {
   if (err) {
     return console.error('Error executing query', err.stack)
   }
-  console.log(result.rows)
+  //console.log(result.rows)
 })
 })
 

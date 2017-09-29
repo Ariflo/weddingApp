@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start_web": "npm run start:dev",
-    "start_mobile": "npm run start:dev:mobile",
+    "web": "npm run start:dev",
+    "mobile": "npm run start:dev:mobile",
     "start:dev": "node web.server.dev.js",
     "start:dev:mobile": "react-native run-ios",
     "serve": "nodemon server/api.js --exec babel-node --presets es2015,stage-2",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.1",
     "express": "^4.15.3",
     "jsonwebtoken": "^8.0.1",

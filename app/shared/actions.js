@@ -1,34 +1,38 @@
-import { REQUEST_DATA, RECIEVE_DATA } from './constants';
+import { ADD_GUEST, GUEST_ADDED } from './constants';
+import { API_URL } from './config';
+import Config from 'react-native-config';
 
-function requestAPOD() {
+function addGuest() {
   return {
-    type: REQUEST_DATA,
+    type: ADD_GUEST,
   };
 }
 
-function recieveAPOD(data) {
+function guestAdded(data) {
+  console.log(data);
   return {
-    type: RECIEVE_DATA,
+    type: GUEST_ADDED,
     data,
   };
 }
 
-export function fetchNasaApod() {
+export function add_guest(guest) {
   return function dofetch(dispatch) {
-    dispatch(requestAPOD());
+    dispatch(addGuest());
 
-    const url =
-      'https://api.nasa.gov/planetary/apod?api_key=fG6oo8z8OETsTYszluhu7NsK16p0HE7QvUNsje6I';
+    const url = Config.API_URL + 'guests';
 
     fetch(url, {
-      method: 'GET',
+      method: 'POST',
       mode: 'cors',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(guest),
     })
       .then((response) => {
+        console.log(response);
         return response.json();
       })
       .then((responseJson) => {
