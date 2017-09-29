@@ -8,12 +8,12 @@ class SignUp extends Component {
     super(props);
 
     this.state = {
-      first_name: '',
-      last_name: '',
-      email: '',
-      phone: '',
-      address: '',
-      password: '',
+      first_name: 'Ari',
+      last_name: 'Flores',
+      email: 'test@test.com',
+      phone: '123-123-1231',
+      address: '123 main street',
+      password: 'pizza',
     };
   }
 

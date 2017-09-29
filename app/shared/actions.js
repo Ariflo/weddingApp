@@ -9,7 +9,6 @@ function addGuest() {
 }
 
 function guestAdded(data) {
-  console.log(data);
   return {
     type: GUEST_ADDED,
     data,
@@ -32,11 +31,10 @@ export function add_guest(guest) {
       body: JSON.stringify(guest),
     })
       .then((response) => {
-        console.log(response);
         return response.json();
       })
       .then((responseJson) => {
-        dispatch(recieveAPOD(responseJson));
+        dispatch(guestAdded(responseJson));
       })
       .catch((error) => {
         /* eslint-disable no-console */

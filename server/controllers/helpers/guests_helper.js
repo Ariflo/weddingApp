@@ -8,17 +8,16 @@ export function get_all_guests() {
   return Guests;
 }
 
-export function get_guest(req) {
+export function get_guest(req, res) {
   Guests.where({
-    id: req.guest.id,
+    email: req.body.email,
   })
     .first()
     .then((guest) => {
-      return { guest };
+      return res.json({ guest });
     })
     .catch((err) => {
-      console.log(err);
-      return { err };
+      return res.json({ err });
     });
 }
 
@@ -27,7 +26,7 @@ export function add_guest(req, res) {
     .first()
     .then((resp_guest) => {
       if (resp_guest) {
-        return res.json ({
+        return res.json({
           message: 'guest already invited',
         });
       } else {
@@ -57,27 +56,27 @@ export function add_guest(req, res) {
       }
     })
     .catch((error) => {
-      return {
+      return res.json({
         error,
         message: 'Error connecting to Database',
-      };
+      });
     });
 }
 
-export function update_guest(guest) {
+export function update_guest(req, res) {
   return Guests.where({
-    id: guest.id,
+    email: req.body.email,
   })
     .first()
     .update(guest)
     .then((updated_guest) => {
-      return { guest: updated_guest, code: 200 };
+      return res.json({ guest: updated_guest, code: 200 });
     });
 }
 
-export function remove_guest(guest) {
+export function remove_guest(req, res) {
   Guests.where({
-    id: guest.id,
+    email: req.body.email,
   })
     .first()
     .del();
