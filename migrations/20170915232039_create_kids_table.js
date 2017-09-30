@@ -1,6 +1,8 @@
 exports.up = function(knex, Promise) {
  	return knex.schema.createTable('Kids', function(table){
    		table.increments('id'); // id serial primary key
+      table.integer('attendee_id').unsigned(); // attendee reference
+        table.foreign('attendee_id').references('Attendees.id'); 
       table.integer('g_id').unsigned(); // guest reference
         table.foreign('g_id').references('Guests.id'); 
    		table.string('first_name').nullable(); // Kid first_name 
