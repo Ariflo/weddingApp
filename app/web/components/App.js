@@ -5,34 +5,28 @@ import { fetchNasaApod } from '../../shared/actions';
 class App extends React.Component {
   constructor(props) {
     super(props);
-  }
 
-  componentWillMount() {
-    if (!this.props.first_store.isFetching) {
-      this.props.fetchNasaApod();
-    }
+    this.state = {};
   }
   render() {
-    const img_url = this.props.nasa_space_img_url ? this.props.nasa_space_img_url : null;
-
     return (
-      <div>
-        <h1>Hello Web World</h1>
-        <p>
-          Check out this Nasa Space Image
-          brought to you by React-Redux!
-        </p>
-        <img src={img_url} alt="space_img" />
+      <div className="app_container">
+        <h1>Greetings Visitor!</h1>
+        <img
+          className="a_and_r_img"
+          src="../images/ipad_1536x2008.png"
+          alt="A_and_R_splash"
+        />
+        <h3 className="center-text">
+          This is the home of our future wedding app. Come back and check it out Jan. 2018!
+        </h3>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ first_store }) => {
-  return {
-    first_store,
-    nasa_space_img_url: first_store.data.url,
-  };
+const mapStateToProps = (state) => {
+  return {};
 };
 
 export default connect(mapStateToProps, {
