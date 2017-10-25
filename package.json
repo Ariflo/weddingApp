@@ -9,6 +9,8 @@
     "start:prod": "node web.server.prod.js",
     "start:dev": "node web.server.dev.js",
     "start:dev:mobile": "react-native run-ios",
+    "postinstall": "if [ \"$NODE_ENV\" = \"production\" ]; then npm run build; fi",
+    "build": "sh build.sh",
     "serve": "nodemon server/api.js --exec babel-node --presets es2015,stage-2",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
