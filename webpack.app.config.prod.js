@@ -5,11 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry:[
-    'webpack-hot-middleware/client',
-    'babel-polyfill',
-    path.join(__dirname, 'app/web', 'src.js'),
-  ],
+  entry:[path.join(__dirname, 'app/web', 'src.js')],
 
   output: {
     path: path.join(__dirname, 'dist/app/web'),
