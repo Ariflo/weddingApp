@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "npm run web",
+    "start": "npm run start:prod",
     "web": "npm run start:dev",
     "mobile": "npm run start:dev:mobile",
+    "start:prod": "node web.server.prod.js",
     "start:dev": "node web.server.dev.js",
     "start:dev:mobile": "react-native run-ios",
     "serve": "nodemon server/api.js --exec babel-node --presets es2015,stage-2",
