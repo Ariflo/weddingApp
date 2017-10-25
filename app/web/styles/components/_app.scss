@@ -2,3 +2,20 @@ html {
   background: $anr_blue;
   color: $white;
 }
+
+.app_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .center-text {
+    font-weight: 200;
+    font-size: 22px;
+  }
+  
+  .a_and_r_img {
+    height: 800px;
+    width: 700px;
+    border-radius: 6px;
+  }
+}
