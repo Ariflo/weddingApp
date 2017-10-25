@@ -18,7 +18,6 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         PORT: JSON.stringify(process.env.PORT),
-        API_URL: JSON.stringify(process.env.API_URL),
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
@@ -32,12 +31,6 @@ module.exports = {
 
   module: {
     rules: [
-      {
-       enforce: 'pre',
-       test: /\.js$/,
-       use: ['eslint-loader'],
-       exclude: [/node_modules/],
-     },
      {
        test: /\.js$/,
        exclude: [/node_modules/],
@@ -79,6 +72,17 @@ module.exports = {
         },
          'sass-loader',
        ]
+     },
+     { 
+       test: /\.(png|gif|jpg)$/, 
+       use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 8192
+          }
+        }
+      ]
      },
     ],
   },
