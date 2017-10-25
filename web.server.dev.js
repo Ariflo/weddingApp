@@ -44,5 +44,5 @@ app.listen(PORT, HOSTNAME, (err) => {
     console.log(`💔 ${err}`);
     return;
   }
-  console.log(`❤️ App is now running on http://${HOSTNAME}:${PORT}`);
+  console.log(`❤️  App is now running on http://${HOSTNAME}:${PORT}`);
 });
