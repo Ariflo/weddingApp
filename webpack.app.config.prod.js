@@ -1,5 +1,4 @@
 require('babel-register');
-require('dotenv-safe').load();
 
 const path = require('path');
 const webpack = require('webpack');
