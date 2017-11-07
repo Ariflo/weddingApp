@@ -24,7 +24,7 @@ app.use('/', (req, res, next) => {
 });
 
 app.get('*', function (req, res, next) {
-  res.sendFile('index.html'));
+  res.sendFile('index.html');
 });
 
 app.listen(PORT, err => {
