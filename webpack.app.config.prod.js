@@ -4,10 +4,10 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry:[path.join(__dirname, 'app/web', 'src.js')],
+  entry:[path.join(__dirname, '/app/web', 'src.js')],
 
   output: {
-    path: path.join(__dirname, 'dist/app/web'),
+    path: path.join(__dirname, '/app/web'),
     publicPath: '/',
     filename: 'src.js',
   },
