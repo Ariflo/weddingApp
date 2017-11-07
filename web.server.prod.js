@@ -18,8 +18,9 @@ app.use((req, resp, next) => {
 
 app.use(compression());
 app.use(favicon(`${__dirname}/dist/favicon.ico`));
+
 app.use('/', (req, res, next) => {
-  express.static(`${__dirname}/web/public`)(req, res, next);
+  express.static(`${__dirname}/dist/app`)(req, res, next);
 });
 
 app.get('*', function (req, res, next) {
