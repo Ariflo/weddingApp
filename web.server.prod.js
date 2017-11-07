@@ -18,7 +18,15 @@ app.use((req, resp, next) => {
 
 app.use(compression());
 app.use('/', (req, res, next) => {
+  console.log('***********************************');
+  console.log('***********************************');
+  console.log('***********************************');
+  console.log('***********************************');
   console.log(`${__dirname}/dist/app`);
+  console.log('***********************************');
+  console.log('***********************************');
+  console.log('***********************************');
+  console.log('***********************************');
   express.static(`${__dirname}/dist/app`)(req, res, next);
 });
 app.use(favicon(`${__dirname}/dist/favicon.ico`));
