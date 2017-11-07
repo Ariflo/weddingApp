@@ -18,13 +18,12 @@ app.use((req, resp, next) => {
 
 app.use(compression());
 app.use('/', (req, res, next) => {
-  console.log(`${__dirname}/dist/app`);
   express.static(`${__dirname}/dist/app`)(req, res, next);
 });
 app.use(favicon(`${__dirname}/dist/favicon.ico`));
 
 app.get('*', function (req, res, next) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, '/web/public', 'index.html'));
 });
 
 app.listen(PORT, err => {
