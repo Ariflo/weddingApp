@@ -24,7 +24,7 @@ app.use('/', (req, res, next) => {
 });
 
 app.get('*', function (req, res, next) {
-  res.sendFile(path.join(__dirname, 'app', '/web/public/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/app', 'index.html'));
 });
 
 app.listen(PORT, err => {
