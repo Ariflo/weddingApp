@@ -20,11 +20,11 @@ app.use(compression());
 app.use(favicon(`${__dirname}/dist/favicon.ico`));
 
 app.use('/', (req, res, next) => {
-  express.static(`${__dirname}/dist/app`)(req, res, next);
+  express.static(`${__dirname}/dist/app/web`)(req, res, next);
 });
 
 app.get('*', function (req, res, next) {
-  res.sendFile(path.join(__dirname, 'dist/app', 'index.html'));
+  res.sendFile(path.join(__dirname, 'app', 'index.html'));
 });
 
 app.listen(PORT, err => {
