@@ -2,7 +2,7 @@
 >I used to think a wedding was a simple affair. Boy and girl meet, they fall in love, he buys a ring, she buys a dress, they say I do. I was wrong. That's getting married. A wedding is an entirely different proposition. <br> <br>
 >George Banks, Father of the Bride (1991)		
 
-**This is an open source webapp for Arian Flores' and Renee McManus' wedding:** [aandrwedding.com](http://aandrwedding.com)
+**This is an open source webapp for Arian Flores' and Renee McManus' wedding:** [aandrwedding.com](http://aandrwedding.herokuapp.com)
 
 ### Stack
 ---
