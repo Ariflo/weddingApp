@@ -8,12 +8,12 @@ class SignUp extends Component {
     super(props);
 
     this.state = {
-      first_name: 'Ari',
-      last_name: 'Flores',
-      email: 'test@test.com',
-      phone: '123-123-1231',
-      address: '123 main street',
-      password: 'pizza',
+      first_name: '',
+      last_name: '',
+      email: '',
+      phone: '',
+      address: '',
+      password: '',
     };
   }
 
@@ -27,14 +27,14 @@ class SignUp extends Component {
   doSubmit() {
     this.props.add_guest(this.state);
     
-    // this.setState({  
-    //   first_name: '',
-    //   last_name: '',
-    //   email: '',
-    //   phone: '',
-    //   address: '',
-    //   password: '',
-    // })
+    this.setState({  
+      first_name: '',
+      last_name: '',
+      email: '',
+      phone: '',
+      address: '',
+      password: '',
+    })
   }
 
   render() {

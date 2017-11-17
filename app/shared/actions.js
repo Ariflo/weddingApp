@@ -1,6 +1,6 @@
 import { ADD_GUEST, GUEST_ADDED } from './constants';
-import { API_URL } from './config';
-//import Config from 'react-native-config';
+//import { API_URL } from './config';
+import Config from 'react-native-config';
 
 function addGuest() {
   return {
@@ -19,7 +19,7 @@ export function add_guest(guest) {
   return function dofetch(dispatch) {
     dispatch(addGuest());
 
-    const url = API_URL + 'guests';
+    const url = Config.API_URL + 'guests';
 
     fetch(url, {
       method: 'POST',
