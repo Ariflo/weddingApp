@@ -11,11 +11,11 @@ class Login extends Component {
         <Content>
           <Form>
             <Item floatingLabel>
-              <Label style={login.label}>Username</Label>
+              <Label>Username</Label>
               <Input />
             </Item>
-            <Item floatingLabel last>
-              <Label style={login.label}>Password</Label>
+            <Item floatingLabel>
+              <Label>Password</Label>
               <Input />
             </Item>
           </Form>
