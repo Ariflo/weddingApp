@@ -1,4 +1,4 @@
-import { Guests, Significant_Others, Kids } from '../../models';
+import { Attendees, Guests, Significant_Others, Kids } from '../../models';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import config from '../../config';
@@ -14,7 +14,7 @@ export function get_guest(req, res) {
     .then(ids => {
       let err_msg;
       ids.forEach(id => {
-        bcrypt.compare(id, req.params.guest_code, (err, result) => {
+        bcrypt.compare(id.toString(), req.params.guest_code, (err, result) => {
           if (result) {
             const token = jwt.sign(
               {
@@ -71,24 +71,40 @@ export function add_guest(req, res) {
         });
       }
 
-      Guests.insert({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email,
-        phone: req.body.phone,
-        address: req.body.address
+      Attendees.insert({
+        guest: true
       })
         .returning('id')
-        .then(id => {
-          bcrypt.genSalt(5, (err, salt) => {
-            bcrypt.hash(id, salt, (err, hash) => {
-              Guests.insert({
-                guest_code: hash
-              }).then(() => {
-                return res.json({ message: 'Guest invited Successfully' });
+        .then(attendee_ids => {
+          Guests.insert({
+            attendee_id: attendee_ids[0],
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,
+            phone: req.body.phone,
+            address: req.body.address
+          })
+            .returning('id')
+            .then(ids => {
+              bcrypt.hash(ids[0].toString(), 10, (err, hash) => {
+                if (err) {
+                  console.log(err);
+                  return res.json({
+                    error: JSON.stringify(err),
+                    message: 'Error creating Guest Code'
+                  });
+                }
+                
+                Guests.where({ id: ids[0] })
+                  .first()
+                  .update({ guest_code: hash })
+                  .then(() => {
+                    return res.json({
+                      message: 'Guest invited Successfully'
+                    });
+                  });
               });
             });
-          });
         });
     })
     .catch(error => {
