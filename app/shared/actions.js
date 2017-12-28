@@ -42,3 +42,44 @@ export function add_guest(guest) {
       });
   };
 }
+
+function loginGuest() {
+  return {
+    type: GUEST_LOGIN,
+  };
+}
+
+function guestLoggedIn(guest) {
+  return {
+    type: GUEST_LOGGED_IN,
+    guest
+  };
+}
+
+export function login_guest(code) {
+  return function dofetch(dispatch) {
+    dispatch(loginGuest());
+
+    const url = Config.API_URL + 'guests';
+
+    fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(code),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((responseJson) => {
+        dispatch(guestLoggedIn(responseJson));
+      })
+      .catch((error) => {
+        /* eslint-disable no-console */
+        console.log(error);
+      });
+  };
+}
