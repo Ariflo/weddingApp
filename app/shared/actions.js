@@ -1,17 +1,22 @@
-import { ADD_GUEST, GUEST_ADDED } from './constants';
+import {
+  ADD_GUEST,
+  GUEST_ADDED,
+  GUEST_LOGIN,
+  GUEST_LOGGED_IN
+} from './constants';
 //import { API_URL } from './config';
 import Config from 'react-native-config';
 
 function addGuest() {
   return {
-    type: ADD_GUEST,
+    type: ADD_GUEST
   };
 }
 
 function guestAdded(data) {
   return {
     type: GUEST_ADDED,
-    data,
+    data
   };
 }
 
@@ -26,17 +31,17 @@ export function add_guest(guest) {
       mode: 'cors',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(guest),
+      body: JSON.stringify(guest)
     })
-      .then((response) => {
+      .then(response => {
         return response.json();
       })
-      .then((responseJson) => {
+      .then(responseJson => {
         dispatch(guestAdded(responseJson));
       })
-      .catch((error) => {
+      .catch(error => {
         /* eslint-disable no-console */
         console.log(error);
       });
@@ -45,7 +50,7 @@ export function add_guest(guest) {
 
 function loginGuest() {
   return {
-    type: GUEST_LOGIN,
+    type: GUEST_LOGIN
   };
 }
 
@@ -60,24 +65,23 @@ export function login_guest(code) {
   return function dofetch(dispatch) {
     dispatch(loginGuest());
 
-    const url = Config.API_URL + 'guests';
+    const url = Config.API_URL + 'guests/' + code;
 
     fetch(url, {
       method: 'GET',
       mode: 'cors',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(code),
+        'Content-Type': 'application/json'
+      }
     })
-      .then((response) => {
+      .then(response => {
         return response.json();
       })
-      .then((responseJson) => {
+      .then(responseJson => {
         dispatch(guestLoggedIn(responseJson));
       })
-      .catch((error) => {
+      .catch(error => {
         /* eslint-disable no-console */
         console.log(error);
       });
