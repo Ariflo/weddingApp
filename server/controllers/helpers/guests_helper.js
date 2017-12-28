@@ -9,16 +9,17 @@ export function get_all_guests() {
 }
 
 export function get_guest(req, res) {
-  Guests.where({
-    email: req.body.email,
-  })
-    .first()
-    .then((guest) => {
-      return res.json({ guest });
-    })
-    .catch((err) => {
-      return res.json({ err });
-    });
+  console.log(req.params.guest_id)
+  // Guests.where({
+  //   email: req.body.email,
+  // })
+  //   .first()
+  //   .then((guest) => {
+  //     return res.json({ guest });
+  //   })
+  //   .catch((err) => {
+  //     return res.json({ err });
+  //   });
 }
 
 export function add_guest(req, res) {
