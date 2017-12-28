@@ -3,62 +3,48 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import config from '../../config';
 import knex from '../../knex';
+import _ from 'lodash';
 
 export function get_all_guests() {
   return Guests;
 }
 
 export function get_guest(req, res) {
-  Guests.distinct('id')
-    .select()
-    .then(ids => {
-      let err_msg;
-      ids.forEach(id => {
-        bcrypt.compare(id.toString(), req.params.guest_code, (err, result) => {
+  Guests.then(guests => {
+    guests.forEach(guest => {
+      if (_.includes(guest.guest_code, req.params.guest_code)) {
+        bcrypt.compare(guest.id.toString(), guest.guest_code, (err, result) => {
           if (result) {
             const token = jwt.sign(
               {
-                id,
+                id: guest.id,
                 guest_code: req.params.guest_code
               },
               config.jwt_secret
-            );
-
-            const guest_party = {};
-            Guests.where({ id })
-              .first()
-              .then(guest => {
-                guest_party.guest = guest;
-              });
-            Significant_Others.where({ g_id: id })
-              .first()
-              .then(so => {
-                guest_party.significant_other = so;
-              });
-            Kids.where({ g_id: id }).then(kids => {
-              guest_party.kids = kids;
-            });
-
-            res.json({ jwt: token, guest_party });
-          } else {
-            err_msg = res.json({
-              error: JSON.stringify(err),
-              message: 'no matching user/password combo'
-            });
+            );            
+            const significant_other = Significant_Others.where({ g_id: guest.id }).first().then(so => { return so });
+            Kids.where({ g_id: guest.id }).then(kids => { return kids });
+            
+            console.log('*************************');
+            console.log();
+            console.log('*************************');
+            const guest_party = { 
+              guest,
+              significant_other,
+            };
+            
+            return res.json({ jwt: token, guest_party });
           }
         });
-      });
-      if (err_msg) {
-        return err_msg;
       }
-    })
-    .catch(err => {
-      console.log(err);
-      res.json({
-        error: JSON.stringify(err),
-        message: 'Error connecting to Database'
-      });
     });
+  }).catch(err => {
+    console.log(err);
+    res.json({
+      error: JSON.stringify(err),
+      message: 'Error connecting to Database'
+    });
+  });
 }
 
 export function add_guest(req, res) {
@@ -94,7 +80,7 @@ export function add_guest(req, res) {
                     message: 'Error creating Guest Code'
                   });
                 }
-                
+
                 Guests.where({ id: ids[0] })
                   .first()
                   .update({ guest_code: hash })
