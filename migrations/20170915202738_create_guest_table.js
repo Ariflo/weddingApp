@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
    		table.increments('id'); // id serial primary key
       table.integer('attendee_id').unsigned(); // attendee reference
         table.foreign('attendee_id').references('Attendees.id'); 
-   		table.string('pwd').nullable(); // hashed password
+   		table.string('guest_code').nullable(); // hashed guest code
    		table.string('first_name').nullable(); // guest first_name 
    		table.string('last_name').nullable(); // guest last_name
       table.string('email').nullable(); // guest email
