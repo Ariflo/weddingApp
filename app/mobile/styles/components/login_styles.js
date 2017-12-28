@@ -7,6 +7,7 @@ export default login = StyleSheet.create({
   
   sign_up_btn: {
     marginTop: 20,
+    width: 78,
     alignSelf: 'center',
     borderColor: '#0d3b4c',
     backgroundColor: 'transparent',

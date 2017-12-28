@@ -36,7 +36,7 @@ class Login extends Component {
                 </Item>
               </Form>
               <Button style={login.sign_up_btn}>
-                <Text style={login.sign_up_btn_txt}>Sign-in</Text>
+                <Text style={login.sign_up_btn_txt}>Login</Text>
               </Button>
             </Content>
           </ImageBackground>
