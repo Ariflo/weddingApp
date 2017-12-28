@@ -16,7 +16,6 @@ function addGuest() {
 function guestAdded(data) {
   return {
     type: GUEST_ADDED,
-    data
   };
 }
 
@@ -54,10 +53,10 @@ function loginGuest() {
   };
 }
 
-function guestLoggedIn(guest) {
+function guestLoggedIn(data) {
   return {
     type: GUEST_LOGGED_IN,
-    guest
+    data
   };
 }
 
