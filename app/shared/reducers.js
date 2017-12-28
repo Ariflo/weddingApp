@@ -11,7 +11,7 @@ const guests = (
   state = {
     isFetching: false,
     isReady: false,
-    data: {}
+    guest_party: {}
   },
   action
 ) => {
@@ -28,7 +28,7 @@ const guests = (
         ...state,
         isFetching: false,
         isReady: true,
-        data: action.data
+        guest_party: action.data.guest_party
       };
     }
     default: {
