@@ -1,31 +1,34 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import { ADD_GUEST, GUEST_ADDED } from './constants';
+import {
+  GUEST_LOGIN,
+  GUEST_LOGGED_IN
+} from './constants';
 
 // store for data
 const guests = (
   state = {
     isFetching: false,
     isReady: false,
-    data: {},
+    guest_party: {}
   },
-  action,
+  action
 ) => {
   switch (action.type) {
-    case ADD_GUEST: {
+    case GUEST_LOGIN: {
       return {
         ...state,
         isFetching: true,
-        isReady: false,
+        isReady: false
       };
     }
-    case GUEST_ADDED: {
+    case GUEST_LOGGED_IN: {
       return {
         ...state,
         isFetching: false,
         isReady: true,
-        data: action.data,
+        guest_party: action.data.guest_party
       };
     }
     default: {
@@ -36,7 +39,7 @@ const guests = (
 
 const rootReducer = combineReducers({
   guests,
-  routing: routerReducer,
+  routing: routerReducer
 });
 
 export default rootReducer;
