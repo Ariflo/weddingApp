@@ -27,6 +27,7 @@
     "babel-register": "^6.26.0",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.1",
+    "color": "^2.0.1",
     "css-loader": "^0.28.7",
     "express": "^4.15.3",
     "file-loader": "^1.1.5",
