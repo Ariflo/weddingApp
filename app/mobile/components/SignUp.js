@@ -13,7 +13,6 @@ class SignUp extends Component {
       email: '',
       phone: '',
       address: '',
-      password: '',
     };
   }
 
@@ -33,7 +32,6 @@ class SignUp extends Component {
       email: '',
       phone: '',
       address: '',
-      password: '',
     })
   }
 
@@ -74,14 +72,6 @@ class SignUp extends Component {
               placeholder="Address"
               value={this.state.address}
               onChangeText={text => this.handleChange('address', text)}
-            />
-          </Item>
-          <Item>
-            <Input
-              secureTextEntry
-              placeholder="Password"
-              value={this.state.password}
-              onChangeText={text => this.handleChange('password', text)}
             />
           </Item>
           <Button block onPress={() => this.doSubmit()}>
