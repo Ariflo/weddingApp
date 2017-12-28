@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   return get_all_guests(req, res);
 });
 
-router.get('/:guest_code_hash', (req, res) => {
+router.get('/:guest_code', (req, res) => {
   return get_guest(req, res);
 });
 

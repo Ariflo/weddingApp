@@ -13,12 +13,12 @@ export function get_guest(req, res) {
     .select()
     .then(ids => {
       ids.forEach(id => {
-        bcrypt.compare(id, req.params.guest_code_hash, (err, result) => {
+        bcrypt.compare(id, req.params.guest_code, (err, result) => {
           if (result) {
             const token = jwt.sign(
               {
                 id,
-                guest_hash: req.params.guest_code_hash
+                guest_code: req.params.guest_code
               },
               config.jwt_secret
             );
@@ -55,36 +55,32 @@ export function get_guest(req, res) {
 export function add_guest(req, res) {
   Guests.where({ email: req.body.email })
     .first()
-    .then(resp_guest => {
-      if (resp_guest) {
+    .then(guest => {
+      if (guest) {
         return res.json({
-          message: 'guest already invited'
-        });
-      } else {
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(req.body.password, salt, (err, hash) => {
-            Guests.insert({
-              pwd: hash,
-              first_name: req.body.first_name,
-              last_name: req.body.last_name,
-              email: req.body.email,
-              phone: req.body.phone,
-              address: req.body.address
-            })
-              .returning('id')
-              .then(id => {
-                const token = jwt.sign(
-                  {
-                    id,
-                    email: req.body.email
-                  },
-                  config.jwt_secret
-                );
-                return res.json({ jwt: token, email: req.body.email, id });
-              });
-          });
+          message: 'Guest already invited'
         });
       }
+
+      Guests.insert({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.address
+      })
+        .returning('id')
+        .then(id => {
+          bcrypt.genSalt(5, (err, salt) => {
+            bcrypt.hash(id, salt, (err, hash) => {
+              Guests.insert({
+                guest_code: hash
+              }).then(() => {
+                return res.json({ message: 'Guest invited Successfully' });
+              });
+            });
+          });
+        });
     })
     .catch(error => {
       return res.json({
