@@ -21,19 +21,18 @@ export function get_guest(req, res) {
                 guest_code: req.params.guest_code
               },
               config.jwt_secret
-            );            
-            const significant_other = Significant_Others.where({ g_id: guest.id }).first().then(so => { return so });
-            Kids.where({ g_id: guest.id }).then(kids => { return kids });
+            );
             
-            console.log('*************************');
-            console.log();
-            console.log('*************************');
-            const guest_party = { 
-              guest,
-              significant_other,
-            };
-            
-            return res.json({ jwt: token, guest_party });
+            const guest_party = { guest };
+            Significant_Others.where({ g_id: guest.id }).first().then(so => {
+              if (!_.isNil(so)) guest_party.significant_other = so;
+              
+              Kids.where({ g_id: guest.id }).then((kids) => {
+                if (!_.isEmpty(kids)) guest_party.kids = kids; 
+                
+                return res.json({ jwt: token, guest_party });
+              });
+            })
           }
         });
       }
