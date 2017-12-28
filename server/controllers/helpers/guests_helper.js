@@ -12,6 +12,7 @@ export function get_guest(req, res) {
   Guests.distinct('id')
     .select()
     .then(ids => {
+      let err_msg;
       ids.forEach(id => {
         bcrypt.compare(id, req.params.guest_code, (err, result) => {
           if (result) {
@@ -39,9 +40,17 @@ export function get_guest(req, res) {
             });
 
             res.json({ jwt: token, guest_party });
+          } else {
+            err_msg = res.json({
+              error: JSON.stringify(err),
+              message: 'no matching user/password combo'
+            });
           }
         });
       });
+      if (err_msg) {
+        return err_msg;
+      }
     })
     .catch(err => {
       console.log(err);
