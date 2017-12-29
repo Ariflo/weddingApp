@@ -56,7 +56,7 @@ class Footer_Component extends Component {
             </Button>
             <Button vertical>
               <Icon name="ios-cart" />
-              <Text>Registery</Text>
+              <Text>Registry</Text>
             </Button>
             <Button vertical>
               <Icon name="ios-plane" />
