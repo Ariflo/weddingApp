@@ -17,8 +17,10 @@ export default login = StyleSheet.create({
   },
   
   txt: {
+    fontFamily: 'Cochin',
+    fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 20,
   },
   
   thumbnail: {
