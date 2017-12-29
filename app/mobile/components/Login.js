@@ -13,6 +13,7 @@ import {
   StyleProvider
 } from 'native-base';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
 import login from '../styles/components/login_styles.js';
 import {
@@ -38,6 +39,7 @@ class Login extends Component {
       this.setState({
         code: ''
       });
+      Actions.sign_up()
     }
   }
 
@@ -58,6 +60,7 @@ class Login extends Component {
                   <Label>Guest Code</Label>
                   <Input
                     secureTextEntry
+                    value={this.state.code}
                     style={login.input}
                     onChangeText={text => this.setState({ code: text })}
                   />
