@@ -39,7 +39,7 @@ class Login extends Component {
       this.setState({
         code: ''
       });
-      Actions.sign_up()
+      Actions.home()
     }
   }
 
