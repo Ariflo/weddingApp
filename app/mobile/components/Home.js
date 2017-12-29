@@ -37,14 +37,14 @@ class Home extends Component {
                 <Button badge vertical>
                   <Badge><Text>2</Text></Badge>
                   <Icon name="apps" />
-                  <Text>Apps</Text>
+                  <Text>RSVP</Text>
                 </Button>
                 <Button vertical>
                   <Icon name="camera" />
                   <Text>Camera</Text>
                 </Button>
                 <Button active badge vertical>
-                  <Badge ><Text>51</Text></Badge>
+                  <Badge><Text>51</Text></Badge>
                   <Icon active name="navigate" />
                   <Text>Navigate</Text>
                 </Button>
