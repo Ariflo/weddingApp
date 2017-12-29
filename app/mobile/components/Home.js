@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import { ScrollView } from 'react-native';
 import {
+  StyleProvider,
   Container,
-  StyleProvider
+  Header,
+  Content,
+  Footer,
+  FooterTab,
+  Button,
+  Badge,
+  Text,
+  Icon
 } from 'native-base';
 import {
   getStyleTheme,
@@ -20,13 +29,47 @@ class Home extends Component {
     return (
       <StyleProvider style={getStyleTheme(native_base_material)}>
         <Container>
+          <Header />
+          <Content />
+          <Footer>
+            <FooterTab>
+              <ScrollView horizontal={true}>
+                <Button badge vertical>
+                  <Badge><Text>2</Text></Badge>
+                  <Icon name="apps" />
+                  <Text>Apps</Text>
+                </Button>
+                <Button vertical>
+                  <Icon name="camera" />
+                  <Text>Camera</Text>
+                </Button>
+                <Button active badge vertical>
+                  <Badge ><Text>51</Text></Badge>
+                  <Icon active name="navigate" />
+                  <Text>Navigate</Text>
+                </Button>
+                <Button vertical>
+                  <Icon name="person" />
+                  <Text>Contact</Text>
+                </Button>
+                <Button vertical>
+                  <Icon name="person" />
+                  <Text>Contact</Text>
+                </Button>
+                <Button vertical>
+                  <Icon name="person" />
+                  <Text>Contact</Text>
+                </Button>
+              </ScrollView>
+            </FooterTab>
+          </Footer>
         </Container>
       </StyleProvider>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {};
 };
 
