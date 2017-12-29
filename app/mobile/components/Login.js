@@ -52,8 +52,9 @@ class Login extends Component {
               uri: 'https://media.giphy.com/media/rIDbVBecGulqM/giphy.gif',
               cache: 'default'
             }}
-            style={{ width: null, height: 620 }}
+            style={{ width: null, height: 720 }}
           >
+          <Header style={login.header}/>
             <Content style={login.content_container}>
               <Form>
                 <Item floatingLabel last>

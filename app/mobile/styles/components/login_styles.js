@@ -5,6 +5,11 @@ export default login = StyleSheet.create({
     marginTop: 40,
   },
   
+  header: {
+    backgroundColor: 'transparent',
+    borderBottomWidth: null,
+  },
+  
   sign_up_btn: {
     marginTop: 20,
     width: 78,
