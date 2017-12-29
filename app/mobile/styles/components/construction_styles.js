@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export default login = StyleSheet.create({  
   container: {
-    backgroundColor: '#d2dbe2',
     flex: 1,
     alignItems: "center",
     flexDirection: "column",
