@@ -8,7 +8,7 @@ export default () => {
   return (
     <Scene key="root">
         <Scene component={Login} hideNavBar={true} />
-        <Scene key="home" component={Home} hideNavBar={true} initial />
+        <Scene key="home" component={Home} hideNavBar={true} initial/>
         <Scene key="sign_up" component={SignUp} />
     </Scene>
   );

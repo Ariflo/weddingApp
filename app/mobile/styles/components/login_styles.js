@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 export default login = StyleSheet.create({  
   content_container: {
     marginTop: 40,
+    backgroundColor: 'transparent',
   },
   
   header: {
