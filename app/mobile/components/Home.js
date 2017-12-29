@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
+import UnderConstruction from './Construction.js'
 import Footer from './Footer.js'
 import {
   StyleProvider,
   Container,
-  Content,
 } from 'native-base';
 import {
   getStyleTheme,
@@ -22,7 +22,7 @@ class Home extends Component {
     return (
       <StyleProvider style={getStyleTheme(native_base_material)}>
         <Container>
-          <Content />
+          <UnderConstruction/>
           <Footer />
         </Container>
       </StyleProvider>
