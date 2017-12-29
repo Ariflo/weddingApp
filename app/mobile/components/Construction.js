@@ -23,7 +23,7 @@ class Construction extends Component {
       <Content contentContainerStyle={construction.container}> 
         <Thumbnail style={construction.thumbnail} large source={require('../images/a_n_r_logo.png')} />
         <View style={construction.text_container}>
-          <Text style={construction.txt}>We are still working on this feature; come back later to see what we've got in store!</Text>
+          <Text style={construction.txt}>We are still working on this feature, come back later to see what we've got in store!</Text>
         </View>
       </Content>
     );
