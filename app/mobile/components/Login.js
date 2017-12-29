@@ -13,6 +13,7 @@ import {
   StyleProvider
 } from 'native-base';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
 import login from '../styles/components/login_styles.js';
 import {
@@ -38,6 +39,7 @@ class Login extends Component {
       this.setState({
         code: ''
       });
+      Actions.home()
     }
   }
 
@@ -50,14 +52,16 @@ class Login extends Component {
               uri: 'https://media.giphy.com/media/rIDbVBecGulqM/giphy.gif',
               cache: 'default'
             }}
-            style={{ width: null, height: 620 }}
+            style={{ width: null, height: 720 }}
           >
+          <Header style={login.header}/>
             <Content style={login.content_container}>
               <Form>
                 <Item floatingLabel last>
                   <Label>Guest Code</Label>
                   <Input
                     secureTextEntry
+                    value={this.state.code}
                     style={login.input}
                     onChangeText={text => this.setState({ code: text })}
                   />
