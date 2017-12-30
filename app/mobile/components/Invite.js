@@ -9,7 +9,6 @@ import {
   Text
 } from 'native-base';
 import { connect } from 'react-redux';
-import Footer from './Footer.js';
 import { add_guest } from '../../shared/actions';
 
 class Invite extends Component {
@@ -87,7 +86,6 @@ class Invite extends Component {
             <Text>Submit</Text>
           </Button>
         </Content>
-        <Footer />
       </Container>
     );
   }
