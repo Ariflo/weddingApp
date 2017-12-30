@@ -15,16 +15,77 @@ import Footer from './components/Footer.js';
 export default () => {
   return (
     <Scene key="root" hideNavBar={true}>
-      <Scene component={Login} initial  />
-      <Scene key="home" component={Home} />
-      <Scene key="invite" component={Invite} />
-      <Scene key="guests" component={Guests} />
-      <Scene key="rsvp" component={Rsvp} />
-      <Scene key="contact" component={Contact} />
-      <Scene key="events" component={Events} />
-      <Scene key="registry" component={Registry} />
-      <Scene key="travel" component={Travel} />
-      <Scene key="pictures" component={Pictures} />
+      <Scene component={Login} initial />
+      <Scene
+        key="footer"
+        hideNavBar={true}
+        tabs={true}
+        tabBarComponent={Footer}
+      >
+        <Scene
+          key="home"
+          tab="home"
+          icon="home"
+          component={Home}
+          hideNavBar={true}
+        />
+        <Scene
+          key="invite"
+          tab="invite"
+          icon="ios-person-add"
+          component={Invite}
+          hideNavBar={true}
+        />
+        <Scene
+          key="guests"
+          tab="guests"
+          icon="ios-list-box"
+          component={Guests}
+          hideNavBar={true}
+        />
+        <Scene
+          key="rsvp"
+          tab="rsvp"
+          icon="mail"
+          component={Rsvp}
+          hideNavBar={true}
+        />
+        <Scene
+          key="contact"
+          tab="contact"
+          icon="ios-chatbubbles"
+          component={Contact}
+          hideNavBar={true}
+        />
+        <Scene
+          key="events"
+          tab="events"
+          icon="ios-calendar"
+          component={Events}
+          hideNavBar={true}
+        />
+        <Scene
+          key="registry"
+          tab="registry"
+          icon="ios-cart"
+          component={Registry}
+          hideNavBar={true}
+        />
+        <Scene
+          key="travel"
+          tab="travel"
+          icon="ios-plane"
+          component={Travel}
+          hideNavBar={true}
+        />
+        <Scene
+          key="pictures"
+          tab="pictures"
+          icon="ios-images"
+          component={Pictures}
+          hideNavBar={true}
+        />
+      </Scene>
     </Scene>
   );
 };
