@@ -9,7 +9,6 @@ Text,
 Thumbnail,
 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import Footer from './Footer.js'
 import construction from '../styles/components/construction_styles.js';
 
 class Construction extends Component {

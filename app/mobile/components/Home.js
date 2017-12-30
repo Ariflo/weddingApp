@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
 import { Container, Content } from 'native-base';
-import Footer from './Footer.js';
 
 class Home extends Component {
   constructor(props) {
@@ -15,7 +14,6 @@ class Home extends Component {
     return (
       <Container>
         <Content />
-        <Footer />
       </Container>
     );
   }
