@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
 import UnderConstruction from './Construction.js';
-import Footer from './Footer.js';
 import { Container } from 'native-base';
 
 class Travel extends Component {
@@ -16,7 +15,6 @@ class Travel extends Component {
     return (
       <Container>
         <UnderConstruction />
-        <Footer />
       </Container>
     );
   }
