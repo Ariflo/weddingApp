@@ -66,7 +66,7 @@ export function login_guest(code) {
 
     const url = Config.API_URL + 'guests/' + code;
 
-    fetch(url, {
+    return fetch(url, {
       method: 'GET',
       mode: 'cors',
       headers: {
@@ -79,6 +79,7 @@ export function login_guest(code) {
       })
       .then(responseJson => {
         dispatch(guestLoggedIn(responseJson));
+        return responseJson;
       })
       .catch(error => {
         /* eslint-disable no-console */

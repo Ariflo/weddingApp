@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Item, Input, Button, Text } from 'native-base';
+import {
+  Container,
+  Header,
+  Content,
+  Item,
+  Input,
+  Button,
+  Text
+} from 'native-base';
 import { connect } from 'react-redux';
-import { add_guest } from '../../shared/actions'
+import Footer from './Footer.js';
+import { add_guest } from '../../shared/actions';
 
-class SignUp extends Component {
+class Invite extends Component {
   constructor(props) {
     super(props);
 
@@ -12,7 +21,7 @@ class SignUp extends Component {
       last_name: '',
       email: '',
       phone: '',
-      address: '',
+      address: ''
     };
   }
 
@@ -25,14 +34,14 @@ class SignUp extends Component {
 
   doSubmit() {
     this.props.add_guest(this.state);
-    
-    this.setState({  
+
+    this.setState({
       first_name: '',
       last_name: '',
       email: '',
       phone: '',
-      address: '',
-    })
+      address: ''
+    });
   }
 
   render() {
@@ -78,15 +87,16 @@ class SignUp extends Component {
             <Text>Submit</Text>
           </Button>
         </Content>
+        <Footer />
       </Container>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {};
 };
 
 export default connect(mapStateToProps, {
   add_guest
-})(SignUp);
+})(Invite);
