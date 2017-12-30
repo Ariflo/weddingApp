@@ -20,7 +20,7 @@ import {
   getStyleTheme,
   native_base_material
 } from '../styles/modules/main-styles.js';
-import { login_guest } from '../../shared/actions'
+import { login_guest } from '../../shared/actions';
 
 class Login extends Component {
   constructor(props) {
@@ -33,13 +33,13 @@ class Login extends Component {
 
   doSubmit() {
     if (!_.isEmpty(this.state.code)) {
-      this.props.login_guest(this.state.code);
-
-      //reset state
-      this.setState({
-        code: ''
+      this.props.login_guest(this.state.code).then(data => {
+        //reset state
+        this.setState({
+          code: ''
+        });
+        Actions.home();
       });
-      Actions.home()
     }
   }
 
@@ -54,7 +54,7 @@ class Login extends Component {
             }}
             style={{ width: null, height: 720 }}
           >
-          <Header style={login.header}/>
+            <Header style={login.header} />
             <Content style={login.content_container}>
               <Form>
                 <Item floatingLabel last>
@@ -78,7 +78,7 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {};
 };
 

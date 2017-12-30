@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
-import { Container, Content } from 'native-base';
+import UnderConstruction from './Construction.js';
 import Footer from './Footer.js';
+import { Container } from 'native-base';
 
-class Home extends Component {
+class Travel extends Component {
   constructor(props) {
     super(props);
 
@@ -14,17 +15,15 @@ class Home extends Component {
   render() {
     return (
       <Container>
-        <Content />
+        <UnderConstruction />
         <Footer />
       </Container>
     );
   }
 }
 
-const mapStateToProps = ({ guests }) => {
-  return {
-    guest_party: guests.guest_party
-  };
+const mapStateToProps = state => {
+  return {};
 };
 
-export default connect(mapStateToProps, {})(Home);
+export default connect(mapStateToProps, {})(Travel);
