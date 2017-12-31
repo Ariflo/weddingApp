@@ -1,27 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView } from 'react-native';
+import { RefreshControl } from 'react-native';
 import guests from '../styles/components/guests_styles.js';
-import { Container, Header, Content, List, ListItem, Text } from 'native-base';
+import {
+  Container,
+  Header,
+  Content,
+  List,
+  ListItem,
+  Text
+} from 'native-base';
 import { fetchGuests } from '../../shared/actions';
 import { Actions } from 'react-native-router-flux';
 
 class Guests extends Component {
   constructor(props) {
     super(props);
-    
-    this.state = {};
+
+    this.state = {
+      isRefreshing: false
+    };
   }
 
   componentWillMount() {
     this.props.fetchGuests();
   }
 
+  _onRefresh = () => {
+    this.setState({ refreshing: true });
+    this.props.fetchGuests().then(() => {
+      this.setState({ refreshing: false });
+    });
+  }
+
   render() {
     const divider_letters = {};
     const guest_list = _.sortBy(this.props.all_guests, 'first_name').reduce(
       (mem, guest) => {
-        if (typeof guest === 'object' && !divider_letters[guest.first_name[0]]) {
+        if (
+          typeof guest === 'object' &&
+          !divider_letters[guest.first_name[0]]
+        ) {
           divider_letters[guest.first_name[0]] = true;
           const unique_key = guest.attendee_id + Math.random() * 10000;
 
@@ -48,7 +67,14 @@ class Guests extends Component {
         <Header style={guests.header}>
           <Text style={guests.header_txt}>Guest List</Text>
         </Header>
-        <Content>
+        <Content
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.isRefreshing}
+              onRefresh={this._onRefresh}
+            />
+          }
+        >
           <List>{guest_list}</List>
         </Content>
       </Container>
