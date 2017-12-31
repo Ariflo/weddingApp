@@ -5,6 +5,16 @@ export default invite = StyleSheet.create({
     marginTop: 40,
   },
   
+  header: {
+    backgroundColor:'#1F4D6F',
+  },
+  
+  header_txt: {
+    color: '#fff',
+    alignSelf: 'flex-end',
+    paddingBottom: 15,
+  },
+  
   btn: {
     width: '50%',
     alignSelf: 'center',

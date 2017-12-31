@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Modal from 'react-native-modal';
-import { Container, Content, Item, Input, Button, Text } from 'native-base';
+import { Container, Content, Header, Item, Input, Button, Text } from 'native-base';
 import { connect } from 'react-redux';
 import { add_guest } from '../../shared/actions';
 import invite from '../styles/components/invite_styles.js';
@@ -99,6 +99,9 @@ class Invite extends Component {
     const any_more_kids = this.state.guest_type === 'Child' ? 'another' : 'a' ;
     return (
       <Container>
+        <Header style={invite.header}>
+          <Text style={invite.header_txt}>Invite Guests</Text>
+        </Header>
         <Content contentContainerStyle={invite.container}>
           <Modal isVisible={this.state.plus_one_open}>
             <View style={invite.modal}>
