@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import Modal from 'react-native-modal';
 import { Container, Content, Header, Item, Input, Button, Text } from 'native-base';
 import { connect } from 'react-redux';
-import { add_guest, add_significant_other, add_child } from '../../shared/actions';
+import { add_guest, add_significant_other, add_child, fetchGuests } from '../../shared/actions';
 import invite from '../styles/components/invite_styles.js';
 
 class Invite extends Component {
@@ -200,5 +200,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   add_guest,
   add_significant_other,
-  add_child
+  add_child,
+  fetchGuests
 })(Invite);
