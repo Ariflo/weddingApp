@@ -15,14 +15,16 @@ class Guests extends Component {
   componentWillMount() {
     this.props.fetchGuests();
   }
-
+  
   render() {
     const divider_letters = {};
+    
     const guest_list = _.sortBy(this.props.all_guests, 'first_name').reduce(
       (mem, guest) => {
         if (!divider_letters[guest.first_name[0]]) {
           divider_letters[guest.first_name[0]] = true;
           const unique_key = guest.attendee_id + Math.random() * 10000;
+          
           mem.push(
             <ListItem key={unique_key} itemDivider>
               <Text>{guest.first_name[0]}</Text>
@@ -56,6 +58,7 @@ class Guests extends Component {
 
 const mapStateToProps = ({ guests }) => {
   return {
+    guests_isReady: guests.isReady,
     all_guests: guests.all_guests
   };
 };
