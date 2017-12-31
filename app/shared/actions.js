@@ -2,7 +2,9 @@ import {
   ADD_GUEST,
   GUEST_ADDED,
   GUEST_LOGIN,
-  GUEST_LOGGED_IN
+  GUEST_LOGGED_IN,
+  ADD_SO,
+  SO_ADDED
 } from './constants';
 //import { API_URL } from './config';
 import Config from 'react-native-config';
@@ -40,6 +42,47 @@ export function add_guest(guest) {
       .then(responseJson => {
         dispatch(guestAdded());
         return responseJson
+      })
+      .catch(error => {
+        /* eslint-disable no-console */
+        console.log(error);
+      });
+  };
+}
+
+function add_so() {
+  return {
+    type: ADD_SO
+  };
+}
+
+function so_added() {
+  return {
+    type: SO_ADDED
+  };
+}
+
+export function add_significant_other(so) {
+  return function dofetch(dispatch) {
+    dispatch(add_so());
+
+    const url = Config.API_URL + 'significant_others';
+
+    return fetch(url, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(so)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(responseJson => {
+        dispatch(so_added());
+        return responseJson;
       })
       .catch(error => {
         /* eslint-disable no-console */
