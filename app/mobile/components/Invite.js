@@ -1,89 +1,175 @@
 import React, { Component } from 'react';
-import {
-  Container,
-  Header,
-  Content,
-  Item,
-  Input,
-  Button,
-  Text
-} from 'native-base';
+import { View } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import Modal from 'react-native-modal';
+import { Container, Content, Item, Input, Button, Text } from 'native-base';
 import { connect } from 'react-redux';
 import { add_guest } from '../../shared/actions';
+import invite from '../styles/components/invite_styles.js';
 
 class Invite extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      first_name: '',
-      last_name: '',
-      email: '',
-      phone: '',
-      address: ''
+    this.default_state = {
+      guest_data: {
+        guest_id: null,
+        first_name: '',
+        last_name: '',
+        email: '',
+        phone: '',
+        address: ''
+      },
+      guest_type: 'Guest',
+      plus_one_open: false,
+      plus_kids: false
     };
+
+    this.state = this.default_state;
   }
 
   handleChange(field, value) {
-    const new_state = {};
-    new_state[field] = value;
+    const new_state = { guest_data: this.state.guest_data };
+    new_state.guest_data[field] = value;
 
     this.setState(new_state);
   }
 
-  doSubmit() {
-    this.props.add_guest(this.state);
+  addPlusOne(add_plus_one) {
+    if (!add_plus_one) {
+      if (this.state.plus_kids) {
+        this.setState(this.default_state);
+        Actions.guests();
+      } else {
+        this.setState({
+          ...this.default_state,
+          plus_kids: true
+        });
+      }
+    } else {
+      if (this.state.guest_type === 'Guest') {
+        this.setState({
+          ...this.default_state,
+          guest_type: 'Significant Other',
+          guest_data: {
+            guest_id: this.state.guest_data.guest_id
+          }
+        });
+      } else {
+        this.setState({
+          ...this.default_state,
+          guest_type: 'Child',
+          guest_data: {
+            guest_id: this.state.guest_data.guest_id
+          }
+        });
+      }
+    }
+  }
 
-    this.setState({
-      first_name: '',
-      last_name: '',
-      email: '',
-      phone: '',
-      address: ''
-    });
+  doSubmit() {
+    if (this.state.guest_type === 'Guest') {
+      this.props.add_guest(this.state.guest_data).then(data => {
+        this.setState({
+          plus_one_open: true,
+          guest_data: {
+            ...this.state.guest_data,
+            guest_id: data.guest_id
+          }
+        });
+      });
+    } else if (this.state.guest_type === 'Significant Other') {
+      console.log(this.state.guest_data);
+      //this.props.add_significant_other(this.state.guest_data);
+      this.setState({
+        plus_one_open: true,
+        plus_kids: true
+      });
+    } else if (this.state.guest_type === 'Child') {
+      console.log(this.state.guest_data);
+      //this.props.add_child(this.state.guest_data);
+      this.setState({
+        plus_one_open: true,
+        plus_kids: true
+      });
+    }
   }
 
   render() {
+    const any_more_kids = this.state.guest_type === 'Child' ? 'another' : 'a' ;
     return (
       <Container>
-        <Content>
+        <Content contentContainerStyle={invite.container}>
+          <Modal isVisible={this.state.plus_one_open}>
+            <View style={invite.modal}>
+              <Text style={invite.modal_txt}>
+                Does this guest have {any_more_kids} {''}
+                <Text style={invite.guest_type_txt}>
+                  {!this.state.plus_kids ? 'significant other' : 'child'}
+                </Text>{' '}
+                you would like to invite ?
+              </Text>
+              <View style={invite.modal_menu_btn_container}>
+                <Button
+                  style={invite.modal_btn}
+                  block
+                  onPress={() => this.addPlusOne(true)}
+                >
+                  <Text>Yes</Text>
+                </Button>
+                <Button
+                  style={invite.modal_btn}
+                  block
+                  onPress={() => this.addPlusOne()}
+                >
+                  <Text>No</Text>
+                </Button>
+              </View>
+            </View>
+          </Modal>
           <Item>
             <Input
               placeholder="First Name"
-              value={this.state.first_name}
+              value={this.state.guest_data.first_name}
               onChangeText={text => this.handleChange('first_name', text)}
             />
           </Item>
           <Item>
             <Input
               placeholder="Last Name"
-              value={this.state.last_name}
+              value={this.state.guest_data.last_name}
               onChangeText={text => this.handleChange('last_name', text)}
             />
           </Item>
-          <Item>
-            <Input
-              placeholder="Email"
-              value={this.state.email}
-              onChangeText={text => this.handleChange('email', text)}
-            />
-          </Item>
-          <Item>
-            <Input
-              placeholder="Phone"
-              value={this.state.phone}
-              onChangeText={text => this.handleChange('phone', text)}
-            />
-          </Item>
-          <Item>
-            <Input
-              placeholder="Address"
-              value={this.state.address}
-              onChangeText={text => this.handleChange('address', text)}
-            />
-          </Item>
-          <Button block onPress={() => this.doSubmit()}>
-            <Text>Submit</Text>
+          {this.state.guest_type !== 'Child' ? (
+            <Item>
+              <Input
+                placeholder="Email"
+                value={this.state.guest_data.email}
+                onChangeText={text => this.handleChange('email', text)}
+              />
+            </Item>
+          ) : null}
+          {this.state.guest_type !== 'Child' ? (
+            <Item>
+              <Input
+                placeholder="Phone"
+                value={this.state.guest_data.phone}
+                onChangeText={text => this.handleChange('phone', text)}
+              />
+            </Item>
+          ) : null}
+          {this.state.guest_type === 'Guest' ? (
+            <Item>
+              <Input
+                placeholder="Address"
+                value={this.state.guest_data.address}
+                onChangeText={text => this.handleChange('address', text)}
+              />
+            </Item>
+          ) : null}
+          <Button style={invite.btn} block onPress={() => this.doSubmit()}>
+            <Text style={invite.btn_txt}>Invite {this.state.guest_type}</Text>
           </Button>
         </Content>
       </Container>

@@ -13,7 +13,7 @@ function addGuest() {
   };
 }
 
-function guestAdded(data) {
+function guestAdded() {
   return {
     type: GUEST_ADDED,
   };
@@ -25,7 +25,7 @@ export function add_guest(guest) {
 
     const url = Config.API_URL + 'guests';
 
-    fetch(url, {
+    return fetch(url, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -38,7 +38,8 @@ export function add_guest(guest) {
         return response.json();
       })
       .then(responseJson => {
-        dispatch(guestAdded(responseJson));
+        dispatch(guestAdded());
+        return responseJson
       })
       .catch(error => {
         /* eslint-disable no-console */
