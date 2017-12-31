@@ -38,6 +38,8 @@ server.use(bodyParser.urlencoded({ extended: false }));
 API ROUTES HERE
 *****************************/
 server.use('/guests', router.guests);
+server.use('/significant_others', router.significant_others);
+server.use('/kids', router.kids);
 
 //set a port to listen to
 const port = config.port || 8080;

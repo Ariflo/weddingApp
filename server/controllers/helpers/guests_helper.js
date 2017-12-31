@@ -22,17 +22,19 @@ export function get_guest(req, res) {
               },
               config.jwt_secret
             );
-            
+
             const guest_party = { guest };
-            Significant_Others.where({ g_id: guest.id }).first().then(so => {
-              if (!_.isNil(so)) guest_party.significant_other = so;
-              
-              Kids.where({ g_id: guest.id }).then((kids) => {
-                if (!_.isEmpty(kids)) guest_party.kids = kids; 
-                
-                return res.json({ jwt: token, guest_party });
+            Significant_Others.where({ g_id: guest.id })
+              .first()
+              .then(so => {
+                if (!_.isNil(so)) guest_party.significant_other = so;
+
+                Kids.where({ g_id: guest.id }).then(kids => {
+                  if (!_.isEmpty(kids)) guest_party.kids = kids;
+
+                  return res.json({ jwt: token, guest_party });
+                });
               });
-            })
           }
         });
       }
@@ -83,9 +85,9 @@ export function add_guest(req, res) {
                 Guests.where({ id: ids[0] })
                   .first()
                   .update({ guest_code: hash })
-                  .then(() => {
+                  .then(guest_id => {
                     return res.json({
-                      message: 'Guest invited Successfully'
+                      guest_id: guest_id[0]
                     });
                   });
               });
