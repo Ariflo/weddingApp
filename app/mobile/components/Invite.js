@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import Modal from 'react-native-modal';
 import { Container, Content, Header, Item, Input, Button, Text } from 'native-base';
 import { connect } from 'react-redux';
-import { add_guest, add_significant_other } from '../../shared/actions';
+import { add_guest, add_significant_other, add_child } from '../../shared/actions';
 import invite from '../styles/components/invite_styles.js';
 
 class Invite extends Component {
@@ -82,7 +82,7 @@ class Invite extends Component {
         plus_kids: true
       });
     } else if (this.state.guest_type === 'Child') {
-      //this.props.add_child(this.state.guest_data);
+      this.props.add_child(this.state.guest_data);
       this.setState({
         plus_one_open: true,
         plus_kids: true
@@ -197,5 +197,6 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   add_guest,
-  add_significant_other
+  add_significant_other,
+  add_child
 })(Invite);
