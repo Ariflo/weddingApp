@@ -5,8 +5,16 @@ import config from '../../config';
 import knex from '../../knex';
 import _ from 'lodash';
 
-export function get_all_guests() {
-  return Guests;
+export function get_all_guests(req, res) {
+  Guests.then(guests => {
+    Significant_Others.then(sig_os => {
+      Kids.then(kids => {
+        const all_guests = [...guests, ...sig_os, ...kids];
+
+        return res.json({ all_guests });
+      });
+    });
+  });
 }
 
 export function get_guest(req, res) {
