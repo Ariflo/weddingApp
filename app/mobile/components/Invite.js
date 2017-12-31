@@ -40,6 +40,8 @@ class Invite extends Component {
       } else {
         this._resetState();
         this.setState({
+          guest_type: 'Child',
+          plus_one_open: true,
           plus_kids: true
         });
       }
