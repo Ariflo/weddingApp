@@ -2,9 +2,22 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Modal from 'react-native-modal';
-import { Container, Content, Header, Item, Input, Button, Text } from 'native-base';
+import {
+  Container,
+  Content,
+  Header,
+  Item,
+  Input,
+  Button,
+  Text
+} from 'native-base';
 import { connect } from 'react-redux';
-import { add_guest, add_significant_other, add_child, fetchGuests } from '../../shared/actions';
+import {
+  add_guest,
+  add_significant_other,
+  add_child,
+  fetchGuests
+} from '../../shared/actions';
 import invite from '../styles/components/invite_styles.js';
 
 class Invite extends Component {
@@ -36,6 +49,7 @@ class Invite extends Component {
     if (!add_plus_one) {
       if (this.state.plus_kids) {
         this._resetState();
+        this.props.fetchGuests() //get latest for guest list
         Actions.guests();
       } else {
         this._resetState();
@@ -78,20 +92,22 @@ class Invite extends Component {
         });
       });
     } else if (this.state.guest_type === 'Significant Other') {
-      this.props.add_significant_other(this.state.guest_data);
-      this.setState({
-        plus_one_open: true,
-        plus_kids: true
+      this.props.add_significant_other(this.state.guest_data).then(() => {
+        this.setState({
+          plus_one_open: true,
+          plus_kids: true
+        });
       });
     } else if (this.state.guest_type === 'Child') {
-      this.props.add_child(this.state.guest_data);
-      this.setState({
-        plus_one_open: true,
-        plus_kids: true
+      this.props.add_child(this.state.guest_data).then(() => {
+        this.setState({
+          plus_one_open: true,
+          plus_kids: true
+        });
       });
     }
   }
-  
+
   _resetState() {
     this.setState({
       guest_data: {
@@ -107,9 +123,9 @@ class Invite extends Component {
       plus_kids: false
     });
   }
-  
+
   render() {
-    const any_more_kids = this.state.guest_type === 'Child' ? 'another' : 'a' ;
+    const any_more_kids = this.state.guest_type === 'Child' ? 'another' : 'a';
     return (
       <Container>
         <Header style={invite.header}>

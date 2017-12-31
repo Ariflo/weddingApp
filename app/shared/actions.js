@@ -21,12 +21,12 @@ function addGuest() {
 
 function guestAdded() {
   return {
-    type: GUEST_ADDED,
+    type: GUEST_ADDED
   };
 }
 
 export function add_guest(guest) {
-  return function dofetch(dispatch) {
+  return function doPost(dispatch) {
     dispatch(addGuest());
 
     const url = Config.API_URL + 'guests';
@@ -45,7 +45,7 @@ export function add_guest(guest) {
       })
       .then(responseJson => {
         dispatch(guestAdded());
-        return responseJson
+        return responseJson;
       })
       .catch(error => {
         /* eslint-disable no-console */
@@ -67,7 +67,7 @@ function so_added() {
 }
 
 export function add_significant_other(so) {
-  return function dofetch(dispatch) {
+  return function doPost(dispatch) {
     dispatch(add_so());
 
     const url = Config.API_URL + 'significant_others';
@@ -108,7 +108,7 @@ function child_added() {
 }
 
 export function add_child(child) {
-  return function dofetch(dispatch) {
+  return function doPost(dispatch) {
     dispatch(adding_child());
     const url = Config.API_URL + 'kids';
 
@@ -175,7 +175,6 @@ export function login_guest(code) {
       });
   };
 }
-
 
 function requestAllGuests() {
   return {

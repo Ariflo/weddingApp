@@ -10,7 +10,6 @@ export function get_all_guests(req, res) {
     Significant_Others.then(sig_os => {
       Kids.then(kids => {
         const all_guests = [...guests, ...sig_os, ...kids];
-
         return res.json({ all_guests });
       });
     });
