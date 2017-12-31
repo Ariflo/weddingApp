@@ -6,7 +6,9 @@ import {
   ADD_SO,
   SO_ADDED,
   ADD_CHILD,
-  CHILD_ADDED
+  CHILD_ADDED,
+  REQUEST_ALL_GUESTS,
+  RECIEVE_ALL_GUESTS
 } from './constants';
 //import { API_URL } from './config';
 import Config from 'react-native-config';
@@ -165,6 +167,48 @@ export function login_guest(code) {
       })
       .then(responseJson => {
         dispatch(guestLoggedIn(responseJson));
+        return responseJson;
+      })
+      .catch(error => {
+        /* eslint-disable no-console */
+        console.log(error);
+      });
+  };
+}
+
+
+function requestAllGuests() {
+  return {
+    type: REQUEST_ALL_GUESTS
+  };
+}
+
+function recieveAllGuests(data) {
+  return {
+    type: RECIEVE_ALL_GUESTS,
+    data
+  };
+}
+
+export function fetchGuests() {
+  return function dofetch(dispatch) {
+    dispatch(requestAllGuests());
+
+    const url = Config.API_URL + 'guests';
+
+    return fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(responseJson => {
+        dispatch(recieveAllGuests(responseJson));
         return responseJson;
       })
       .catch(error => {
