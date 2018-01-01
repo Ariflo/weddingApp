@@ -14,15 +14,33 @@
 
 ### Features
 ---
-* RSVP system
+* RSVP mechanisms
 * Announcements landing page
 * Messageing board to RSVP Participants
-* Link to Wedding Details
+* Link to Wedding and Event Details
 * Link to Engagement photos
 * Link to Wedding Party
-* Link to Registry
+* Link to Wedding Registry
 * Link to Travel and Lodging info
 
+
+### Login &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Invite
+![HomePage](./images/HomePage.gif "HomePage")&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+![InvitePage](./images/InvitePage.gif "Invite")
+
+### Download and Install Locally
+---
+(1) `git clone git@github.com:Ariflo/aandr_wedding.git`
+
+(2) `cd aandrwedding` then `npm install` all dependencies. 
+
+(3) Create a `.env` file with the vars listed on the `.env.example` 
+
+(4) Once that is finished check out `./server/server_instructions.md` for instructions on how to set up the server.
+
+(5) Otherwise `npm run mobile` to start the react-native app 
+
+(6) `npm run web` to start the web app
 
 
 <br>
