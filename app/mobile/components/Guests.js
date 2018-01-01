@@ -35,6 +35,7 @@ class Guests extends Component {
 
   render() {
     const divider_letters = {};
+    console.log(this.props.all_guests);
     const guest_list = _.sortBy(this.props.all_guests, 'first_name').reduce(
       (mem, guest) => {
         if (
