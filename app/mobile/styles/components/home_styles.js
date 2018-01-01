@@ -21,6 +21,7 @@ export default home = StyleSheet.create({
   
   countdown_num_container: {
     flexDirection: "column",
+    alignItems: 'center',
     justifyContent: "center",
   },
   
@@ -39,4 +40,36 @@ export default home = StyleSheet.create({
   date_title: {
     fontSize: 14,
   },
+  
+  thumbnail: {
+    alignSelf: 'center',
+    marginTop: 20,
+    width: 300,
+    height: 220,
+  },
+  
+  location_time_container: {
+    alignItems: 'center',
+  },
+  
+  location_header: {
+    marginTop: 20,
+    fontFamily: 'American Typewriter',
+    color: '#28323D',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  
+  location: {
+    color: '#28323D',
+    fontWeight: 'bold',
+  },
+  
+  time: {
+    marginTop: 10,
+    fontFamily: 'Baskerville-Italic',
+    color: '#28323D',
+    fontSize: 18,
+    fontWeight: '700',
+  }
 });
