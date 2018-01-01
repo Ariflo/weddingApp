@@ -21,14 +21,13 @@ export default home = StyleSheet.create({
   
   countdown_num_container: {
     flexDirection: "column",
-    justifyContent: "flex-start",
+    justifyContent: "center",
   },
   
   date_box: {
     paddingHorizontal: 12,
     paddingVertical: 3,
     backgroundColor:'#28323D',
-    fontWeight: 'bold',
     marginHorizontal: 10,
   },
   
