@@ -6,3 +6,5 @@ export const ADD_SO = "ADD_SO";
 export const SO_ADDED = "SO_ADDED";
 export const ADD_CHILD = "ADD_CHILD";
 export const CHILD_ADDED = "CHILD_ADDED";
+export const REQUEST_ALL_GUESTS = "REQUEST_ALL_GUESTS";
+export const RECIEVE_ALL_GUESTS = "RECIEVE_ALL_GUESTS";

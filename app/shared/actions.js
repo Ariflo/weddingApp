@@ -6,7 +6,9 @@ import {
   ADD_SO,
   SO_ADDED,
   ADD_CHILD,
-  CHILD_ADDED
+  CHILD_ADDED,
+  REQUEST_ALL_GUESTS,
+  RECIEVE_ALL_GUESTS
 } from './constants';
 //import { API_URL } from './config';
 import Config from 'react-native-config';
@@ -19,12 +21,12 @@ function addGuest() {
 
 function guestAdded() {
   return {
-    type: GUEST_ADDED,
+    type: GUEST_ADDED
   };
 }
 
 export function add_guest(guest) {
-  return function dofetch(dispatch) {
+  return function doPost(dispatch) {
     dispatch(addGuest());
 
     const url = Config.API_URL + 'guests';
@@ -43,7 +45,7 @@ export function add_guest(guest) {
       })
       .then(responseJson => {
         dispatch(guestAdded());
-        return responseJson
+        return responseJson;
       })
       .catch(error => {
         /* eslint-disable no-console */
@@ -65,7 +67,7 @@ function so_added() {
 }
 
 export function add_significant_other(so) {
-  return function dofetch(dispatch) {
+  return function doPost(dispatch) {
     dispatch(add_so());
 
     const url = Config.API_URL + 'significant_others';
@@ -106,7 +108,7 @@ function child_added() {
 }
 
 export function add_child(child) {
-  return function dofetch(dispatch) {
+  return function doPost(dispatch) {
     dispatch(adding_child());
     const url = Config.API_URL + 'kids';
 
@@ -165,6 +167,47 @@ export function login_guest(code) {
       })
       .then(responseJson => {
         dispatch(guestLoggedIn(responseJson));
+        return responseJson;
+      })
+      .catch(error => {
+        /* eslint-disable no-console */
+        console.log(error);
+      });
+  };
+}
+
+function requestAllGuests() {
+  return {
+    type: REQUEST_ALL_GUESTS
+  };
+}
+
+function recieveAllGuests(data) {
+  return {
+    type: RECIEVE_ALL_GUESTS,
+    data
+  };
+}
+
+export function fetchGuests() {
+  return function dofetch(dispatch) {
+    dispatch(requestAllGuests());
+
+    const url = Config.API_URL + 'guests';
+
+    return fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(responseJson => {
+        dispatch(recieveAllGuests(responseJson));
         return responseJson;
       })
       .catch(error => {

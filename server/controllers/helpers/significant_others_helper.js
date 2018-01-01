@@ -15,7 +15,7 @@ export function add_significant_other(req, res) {
           message: 'Significant Other already invited'
         });
       }
-
+  
       Attendees.insert({
         significant_other: true
       })
