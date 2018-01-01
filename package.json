@@ -39,6 +39,7 @@
     "method-override": "^2.3.9",
     "mobx": "^3.2.1",
     "mobx-react": "^4.2.2",
+    "moment": "^2.20.1",
     "native-base": "^2.3.5",
     "node-sass": "^4.6.0",
     "path": "^0.12.7",
