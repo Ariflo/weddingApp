@@ -15,13 +15,12 @@ import Footer from './components/Footer.js';
 export default () => {
   return (
     <Scene key="root" hideNavBar={true}>
-      <Scene component={Login} />
+      <Scene component={Login} initial />
       <Scene
         key="footer"
         hideNavBar={true}
         tabs={true}
         tabBarComponent={Footer}
-        initial
       >
         <Scene
           key="home"
