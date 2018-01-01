@@ -48,20 +48,22 @@ class Invite extends Component {
   addPlusOne(add_plus_one) {
     if (!add_plus_one) {
       if (this.state.plus_kids) {
-        this._resetState();
-        this.props.fetchGuests() //get latest for guest list
+        this._resetState();// clear form
         Actions.guests();
-      } else {
-        this._resetState();
+      } else {//no Significant Other, but has child
+        this._resetState();// clear form
         this.setState({
           guest_type: 'Child',
           plus_one_open: true,
-          plus_kids: true
+          plus_kids: true,
+          guest_data: {
+            guest_id: this.state.guest_data.guest_id
+          }
         });
       }
     } else {
       if (this.state.guest_type === 'Guest') {
-        this._resetState();
+        this._resetState();// clear form
         this.setState({
           guest_type: 'Significant Other',
           guest_data: {
@@ -69,7 +71,7 @@ class Invite extends Component {
           }
         });
       } else {
-        this._resetState();
+        this._resetState();// clear form
         this.setState({
           guest_type: 'Child',
           guest_data: {
