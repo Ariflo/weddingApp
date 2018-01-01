@@ -49,7 +49,9 @@ class Invite extends Component {
     if (!add_plus_one) {
       if (this.state.plus_kids) {
         this._resetState();// clear form
-        Actions.guests();
+        this.props.fetchGuests().then(() => {
+          Actions.guests();
+        })
       } else {//no Significant Other, but has child
         this._resetState();// clear form
         this.setState({

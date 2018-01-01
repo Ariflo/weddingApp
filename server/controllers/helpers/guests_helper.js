@@ -6,9 +6,9 @@ import knex from '../../knex';
 import _ from 'lodash';
 
 export function get_all_guests(req, res) {
-  Guests.then(guests => {
-    Significant_Others.then(sig_os => {
-      Kids.then(kids => {
+  knex.select('*').from('Guests').then(guests => {
+    knex.select('*').from('Significant_Others').then(sig_os => {
+      knex.select('*').from('Kids').then(kids => {
         const all_guests = [...guests, ...sig_os, ...kids];
         return res.json({ all_guests });
       });

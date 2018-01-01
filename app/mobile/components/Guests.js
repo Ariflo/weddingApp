@@ -26,7 +26,7 @@ class Guests extends Component {
     this.props.fetchGuests();
   }
 
-  _onRefresh = () => {
+  _onRefresh() {
     this.setState({ refreshing: true });
     this.props.fetchGuests().then(() => {
       this.setState({ refreshing: false });
@@ -35,7 +35,6 @@ class Guests extends Component {
 
   render() {
     const divider_letters = {};
-    console.log(this.props.all_guests);
     const guest_list = _.sortBy(this.props.all_guests, 'first_name').reduce(
       (mem, guest) => {
         if (
@@ -72,7 +71,8 @@ class Guests extends Component {
           refreshControl={
             <RefreshControl
               refreshing={this.state.isRefreshing}
-              onRefresh={this._onRefresh}
+              onRefresh={this._onRefresh.bind(this)}
+              tintColor={'#015a6c'}
             />
           }
         >
