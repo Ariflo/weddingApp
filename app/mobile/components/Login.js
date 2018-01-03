@@ -52,7 +52,7 @@ class Login extends Component {
               uri: 'https://media.giphy.com/media/rIDbVBecGulqM/giphy.gif',
               cache: 'default'
             }}
-            style={{ width: null, height: 720 }}
+            style={{ width: null, height: 780 }}
           >
             <Header style={login.header} />
             <Content style={login.content_container}>
