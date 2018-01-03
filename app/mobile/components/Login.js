@@ -48,7 +48,7 @@ class Login extends Component {
       <StyleProvider style={getStyleTheme(native_base_material)}>
         <Container>
           <ImageBackground
-            source={{
+            source={{ 
               uri: 'https://media.giphy.com/media/rIDbVBecGulqM/giphy.gif',
               cache: 'default'
             }}
