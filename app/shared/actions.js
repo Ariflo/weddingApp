@@ -10,8 +10,8 @@ import {
   REQUEST_ALL_GUESTS,
   RECIEVE_ALL_GUESTS
 } from './constants';
-//import { API_URL } from './config';
-import Config from 'react-native-config';
+import { API_URL } from './config';
+//import Config from 'react-native-config';
 
 function addGuest() {
   return {

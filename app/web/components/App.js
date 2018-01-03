@@ -13,7 +13,7 @@ class App extends React.Component {
         <h1>Greetings Visitor!</h1>
         <img className="a_and_r_img" src={anr_img} alt="A_and_R_splash" />
         <h3 className="center-text">
-          This is the home of our future wedding app. Come back and check it out Jan. 2018!
+          This is the home of our future wedding app!
         </h3>
       </div>
     );

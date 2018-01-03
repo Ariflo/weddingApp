@@ -5,7 +5,7 @@ import {
   GUEST_LOGIN,
   GUEST_LOGGED_IN,
   REQUEST_ALL_GUESTS,
-  RECIEVE_ALL_GUESTS
+  RECIEVE_ALL_GUESTS,
 } from './constants';
 
 // store for data
@@ -14,16 +14,16 @@ const guests = (
     isFetching: false,
     isReady: false,
     guest_party: {},
-    all_guests: []
+    all_guests: [],
   },
-  action
+  action,
 ) => {
   switch (action.type) {
     case GUEST_LOGIN: {
       return {
         ...state,
         isFetching: true,
-        isReady: false
+        isReady: false,
       };
     }
     case GUEST_LOGGED_IN: {
@@ -31,14 +31,14 @@ const guests = (
         ...state,
         isFetching: false,
         isReady: true,
-        guest_party: action.data.guest_party
+        guest_party: action.data.guest_party,
       };
     }
     case REQUEST_ALL_GUESTS: {
       return {
         ...state,
         isFetching: true,
-        isReady: false
+        isReady: false,
       };
     }
     case RECIEVE_ALL_GUESTS: {
@@ -46,7 +46,7 @@ const guests = (
         ...state,
         isFetching: false,
         isReady: true,
-        all_guests: action.data.all_guests
+        all_guests: action.data.all_guests,
       };
     }
     default: {
@@ -57,7 +57,7 @@ const guests = (
 
 const rootReducer = combineReducers({
   guests,
-  routing: routerReducer
+  routing: routerReducer,
 });
 
 export default rootReducer;
