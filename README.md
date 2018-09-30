@@ -2,8 +2,6 @@
 >I used to think a wedding was a simple affair. Boy and girl meet, they fall in love, he buys a ring, she buys a dress, they say I do. I was wrong. That's getting married. A wedding is an entirely different proposition. <br> <br>
 >George Banks, Father of the Bride (1991)		
 
-**This is an open source webapp for Arian Flores' and Renee McManus' wedding:** [aandrwedding.com](http://aandrwedding.herokuapp.com)
-
 ### Stack
 ---
 * Postgres
@@ -23,16 +21,11 @@
 * Link to Wedding Registry
 * Link to Travel and Lodging info
 
-
-### Login &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Invite
-![HomePage](./images/HomePage.gif "HomePage")&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-![InvitePage](./images/InvitePage.gif "Invite")
-
 ### Download and Install Locally
 ---
 (1) `git clone git@github.com:Ariflo/aandr_wedding.git`
 
-(2) `cd aandrwedding` then `npm install` all dependencies. 
+(2) `cd weddingApp` then `npm install` all dependencies. 
 
 (3) Create a `.env` file with the vars listed on the `.env.example` 
 
@@ -48,7 +41,7 @@
 
 MIT
 
-Copyright (c) 2017 Arian Flores <Ariflo@arianflores.com>
+Copyright (c) 2017 Arian Flores <arian@arianflores.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
