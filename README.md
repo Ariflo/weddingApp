@@ -23,7 +23,7 @@
 
 ### Download and Install Locally
 ---
-(1) `git clone git@github.com:Ariflo/wedding_app.git`
+(1) `git clone git@github.com:Ariflo/weddingApp.git`
 
 (2) `cd weddingApp` then `npm install` all dependencies. 
 
